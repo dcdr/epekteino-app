@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^4.2.4",
+    "@angular/animations": "^4.3.5",
     "@angular/common": "^4.2.4",
     "@angular/compiler": "^4.2.4",
     "@angular/core": "^4.2.4",
@@ -21,10 +21,11 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "angular-material-source": "git://github.com/angular/material",
     "core-js": "^2.4.1",
+    "materialize-css": "^0.100.1",
     "rxjs": "^5.4.2",
-    "zone.js": "^0.8.14",
-    "angular-material-source": "git://github.com/angular/material"
+    "zone.js": "^0.8.14"
   },
   "devDependencies": {
     "@angular/cli": "1.3.1",
