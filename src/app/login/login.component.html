@@ -1,0 +1,7 @@
+<div>
+  <label for="email">Email: </label>
+  <input #email ng-model="email" />
+  <label for="password">Password: </label>
+  <input #password ng-model="password" />
+  <button (click)="login(email.value, password.value)">Login</button>
+</div>
