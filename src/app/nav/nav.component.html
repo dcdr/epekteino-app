@@ -1,8 +1,8 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo"><img src="assets/ambrose-logo-tagline.png" /></a>
+    <a href="/about" class="brand-logo"><img src="assets/ambrose-logo-tagline.png" /></a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li *ngIf="!isAuthenticated()"><a href="#">Log in</a></li>
+      <li *ngIf="!isAuthenticated()"><a href="/login">Log in</a></li>
       <li *ngIf="!isAuthenticated()"><a href="#">Sign up</a></li>
       <li *ngIf="isAuthenticated()"><a href="#">Profile</a></li>
     </ul>

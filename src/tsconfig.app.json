@@ -3,7 +3,9 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
+    "mapRoot": "./",
     "module": "es2015",
+    "sourceMap": true,
     "types": []
   },
   "exclude": [

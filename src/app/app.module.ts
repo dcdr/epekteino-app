@@ -5,10 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
+import { FeathersModule } from './feathers/feathers.module';
+import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
 
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 
@@ -16,10 +19,12 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     AboutComponent,
-    NavComponent
+    NavComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    FeathersModule,
     HttpModule,
     RouterModule.forRoot(
       appRoutes,
