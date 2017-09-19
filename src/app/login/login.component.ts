@@ -26,12 +26,10 @@ export class LoginComponent implements OnInit {
     })
     // navigate to base URL on success
     .then(() => {
-      debugger;
       this.router.navigate(['/']);
     })
     .catch(err => {
       // this.messages.unshift('Wrong credentials!');
-      debugger;
     });
   }
 }

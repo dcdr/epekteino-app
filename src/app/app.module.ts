@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { FeathersModule } from './feathers/feathers.module';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
+import { SettingsComponent } from './nav/settings/settings.component';
 
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -19,8 +20,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     AboutComponent,
+    LoginComponent,
     NavComponent,
-    LoginComponent
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,6 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
-    // other imports here
   ],
   providers: [
   ],

@@ -37,6 +37,10 @@ export class FeathersService {
     return this._feathers.authenticate(credentials);
   }
 
+  public isAuthenticated(): boolean {
+    return !!this._feathers.get("accessToken");
+  }
+
   // expose logout
   public logout() {
     return this._feathers.logout();

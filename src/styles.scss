@@ -1,2 +1,7 @@
 $roboto-font-path: '~materialize-css/dist/fonts/roboto/' !default;
 @import '~materialize-css/sass/materialize.scss';
+
+nav {
+    height: 88px;
+    line-height: 88px;
+}
