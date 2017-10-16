@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FeathersService } from '../feathers/feathers.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { FeathersService } from '../feathers/feathers.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private feathers: FeathersService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() { }
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     }
 
     // try to authenticate with feathers
-    this.feathers.authenticate({
+    this.auth.authenticate({
       strategy: 'local',
       email,
       password

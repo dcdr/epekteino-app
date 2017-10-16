@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FeathersService } from '../../feathers/feathers.service';
+import { Router } from '@angular/router'
+import { AuthService } from '../../services/auth.service';
 
 declare var $: any;
 
@@ -10,13 +11,14 @@ declare var $: any;
 })
 export class SettingsComponent {
 
-  constructor(private feathers: FeathersService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   isAuthenticated(): boolean {
-    return this.feathers.isAuthenticated();
+    return this.auth.isAuthenticated();
   }
 
   logout() {
-    this.feathers.logout();
+    this.auth.logout();
+    this.router.navigate(['/'])
   }
 }

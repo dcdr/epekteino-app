@@ -2,6 +2,25 @@ $roboto-font-path: '~materialize-css/dist/fonts/roboto/' !default;
 @import '~materialize-css/sass/materialize.scss';
 
 nav {
-    height: 88px;
-    line-height: 88px;
+    height: 86px;
+    line-height: 86px;
+}
+
+a .brand-logo {
+    height: 86px !important;
+}
+
+.ep-btn-submit {
+    @extend .btn-large;
+    @extend .green;
+}
+
+.ep-btn-cancel {
+    @extend .btn-large;
+    @extend .red;
+}
+
+.ep-btn {
+    @extend .btn-large;
+    @extend .blue;
 }

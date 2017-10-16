@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { SettingsComponent } from './settings.component';
+import { AuthService, AUTH_STORE } from '../../services/auth.service';
+
+class RouterStub {
+  navigate(params: Array<string>) { }
+}
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
@@ -8,7 +14,12 @@ describe('SettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SettingsComponent ]
+      declarations: [ SettingsComponent ],
+      providers: [ 
+        AuthService,
+        { provide: Router, useClass: RouterStub },
+        { provide: AUTH_STORE, useValue: 'test-user' }
+      ]
     })
     .compileComponents();
   }));
