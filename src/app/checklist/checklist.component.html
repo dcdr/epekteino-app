@@ -1,0 +1,7 @@
+<ul class="collection with-header teal">
+  <li class="collection-header teal"><span class="title">Checklist</span><span *ngIf="term"> for {{term.name}}</span></li>
+  <li *ngFor="let item of checklist">
+    <i *ngIf="item.completed" class="material-icons">check</i>
+    <a href="{{item.route}}" class="black-text">{{item.name}}</a>
+  </li>
+</ul>

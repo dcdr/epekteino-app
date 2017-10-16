@@ -4,33 +4,31 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { NavModule } from './nav/nav.module';
 import { ServicesModule } from './services/services.module';
+import { TermModule } from './term/term.module';
 
 import { AppComponent } from './app.component';
-import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
-import { NavComponent } from './nav/nav.component';
-import { SettingsComponent } from './nav/settings/settings.component';
+import { ChecklistComponent } from './checklist/checklist.component';
 
 @NgModule({
   imports: [
     BrowserModule,
-    DashboardModule,
     FormsModule,
     HttpModule,
+    NavModule,
     ServicesModule,
+    TermModule,
     AppRoutingModule
   ],
   declarations: [
     AppComponent,
-    AboutComponent,
-    LoginComponent,
-    NavComponent,
-    SettingsComponent
+    ChecklistComponent
   ],
   providers: [
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ 
+    AppComponent
+  ]
 })
 export class AppModule { }

@@ -8,9 +8,25 @@ export class Term {
   registrationOpens: moment.Moment;
   registrationCloses: moment.Moment;
   registrationIsOpen: boolean;
+  checklist: string[]
 
-  constructor() {
-    this.registrationIsOpen = false;
+  constructor(t: Term = null) {
+    if (!!t) {
+      this.id = t.id;
+      this.name = t.name;
+      this.startDate = moment.isMoment(t.startDate) ? t.startDate : moment(t.startDate);
+      this.endDate = moment.isMoment(t.endDate) ? t.endDate : moment(t.endDate);
+      this.registrationOpens = moment.isMoment(t.registrationOpens) ? t.registrationOpens : moment(t.registrationOpens);
+      this.registrationCloses = moment.isMoment(t.registrationCloses) ? t.registrationCloses : moment(t.registrationCloses);
+      this.registrationIsOpen = t.registrationIsOpen;
+    }
+    else {
+      this.registrationIsOpen = false;
+    }
+}
+
+  registrationCanOpen() {
+    return !this.registrationIsOpen && moment().isBefore(this.registrationCloses);
   }
 
   openRegistration() {
@@ -21,15 +37,16 @@ export class Term {
     this.registrationIsOpen = false;
   }
 
-  clone(): Term {
-    let copy = new Term();
-    copy.id = this.id;
-    copy.name = this.name;
-    copy.startDate = this.startDate;
-    copy.endDate = this.endDate;
-    copy.registrationOpens = this.registrationOpens;
-    copy.registrationCloses = this.registrationCloses;
-    copy.registrationIsOpen = this.registrationIsOpen;
-    return copy;
+  completeChecklist(checklist: string) {
+    if (!this.checklist) {
+      this.checklist = [];
+    }
+    if (-1 === this.checklist.indexOf(checklist)) {
+      this.checklist.push(checklist);
+    }
+  }
+
+  isChecklistComplete(checklist: string) {
+    return this.checklist && -1 !== this.checklist.indexOf(checklist);
   }
 }

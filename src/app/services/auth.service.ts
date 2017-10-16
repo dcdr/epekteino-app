@@ -14,15 +14,15 @@ export class AuthService {
   authenticate(params): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       if (params.email === 'registrar' && params.password === 'registrar') {
-        this.persistUser(new User('registrar', 'ambrose', ['registrar'], ['classroom:*', 'course:*', 'class:*', 'instructor:*', 'student:*', 'requirement:*', 'registration:*']));
+        this.persistUser(new User('registrar', 'ambrose', ['registrar'], ['classroom:*', 'course:*', 'class:*', 'instructor:*', 'student:*', 'requirement:*', 'registration:*', 'term:*' ]));
         resolve(true);
       }
       if (params.email === 'instructor' && params.password === 'instructor') {
-        this.persistUser(new User('instructor', 'ambrose', ['instructor'], ['classroom:get', 'course:get', 'class:get', 'instructor:get', 'student:get', 'requirement:get']));
+        this.persistUser(new User('instructor', 'ambrose', ['instructor'], ['classroom:get', 'course:get', 'class:get', 'instructor:get', 'student:get', 'requirement:get', 'term:get']));
         resolve(true);
       }
       if (params.email === 'student' && params.password === 'student') {
-        this.persistUser(new User('student', 'ambrose', ['student'], ['course:get', 'class:get', 'instructor:get', 'requirement:get']));
+        this.persistUser(new User('student', 'ambrose', ['student'], ['course:get', 'class:get', 'instructor:get', 'requirement:get', 'term:get']));
         resolve(true);
       }
       else {

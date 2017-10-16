@@ -1,5 +1,5 @@
 import { Injectable, Inject, InjectionToken } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ConnectableObservable, Observable, Observer, Subject } from 'rxjs';
 import * as moment from 'moment';
 import { UUID } from 'angular2-uuid';
 
@@ -9,39 +9,64 @@ export let TERM_STORE = new InjectionToken('TERM_STORE');
 
 @Injectable()
 export class TermService {
-  constructor(@Inject(TERM_STORE) private storageKey: string) { }
+  private currentObserver: Observer<Term>;
+  private currentSubject: Subject<Term>;
+  current: ConnectableObservable<Term>;
+  
+  constructor(@Inject(TERM_STORE) private storageKey: string) {
+    let o = new Observable<Term>(observer => {
+      this.currentObserver = observer;
+    });
+    this.currentSubject = new Subject<Term>();
+    this.current = o.multicast(this.currentSubject);
+    this.current.connect();
+  }
 
-  getTerms(): Observable<Term[]> {
-    return Observable.of(this.loadTerms());
+  getAll(): Observable<Term> {
+    return this.loadTerms();
+  }
+
+  getOne(id: string): Observable<Term> {
+    return Observable.create(observer => {
+      this.loadTerms().first(term => { return term.id === id; })
+      .subscribe(term => {
+        observer.next(term);
+        observer.complete();
+      });
+    });
   }
 
   saveTerm(term: Term) {
-    let terms = this.loadTerms();
-    term.id = UUID.UUID();
-    terms.push(term);
-    this.saveTerms(terms);
+    this.loadTerms().toArray().subscribe(terms => {
+      term.id = UUID.UUID();
+      terms.push(term);
+      this.saveTerms(terms);
+    });
   }
 
   updateTerm(term: Term) {
-    let terms = this.loadTerms();
-    for(let i=0; i<terms.length; i++) {
-      if (terms[i].id === term.id) {
-        terms[i] = term;
-        this.saveTerms(terms);
-        break;
+    this.loadTerms().toArray().subscribe(terms => {
+      for(let i=0; i<terms.length; i++) {
+        if (terms[i].id === term.id) {
+          terms[i] = term;
+          this.saveTerms(terms);
+          break;
+        }
       }
-    }
+    });;
   }
 
   deleteTerm(term: Term) {
-    let terms = this.loadTerms();
-    for(let i=0; i<terms.length; i++) {
-      if (terms[i].id === term.id) {
-        terms.splice(i, 1);
-        this.saveTerms(terms);
-        break;
+    this.loadTerms()
+      .filter(t => { return t.id !== term.id; })
+      .toArray().subscribe(newTerms => {
+        this.saveTerms(newTerms);
       }
-    }
+    );
+  }
+
+  setCurrent(term: Term) {
+    this.currentObserver.next(term);
   }
 
   private saveTerms(terms: Term[]) {
@@ -50,22 +75,31 @@ export class TermService {
     }
   }
 
-  private loadTerms(): Term[] {
-    let terms = new Array<Term>();
-    if (typeof Storage !== 'undefined') {
-      const info = JSON.parse(localStorage.getItem(this.storageKey)) as Array<any>;
-      if (!!info) {
-        info.forEach(t => {
-          const term = new Term();
-          term.name = t.name;
-          term.startDate = moment(t.startDate);
-          term.endDate = moment(t.endDate);
-          term.registrationOpens = moment(t.registrationOpens);
-          term.registrationCloses = moment(t.registrationCloses);
-          terms.push(term);
-        });
+  private loadTerms(): Observable<Term> {
+    return Observable.create(observer => {
+      if (typeof Storage !== 'undefined') {
+        const now = moment();
+        let candidate: Term = null;
+        const info = JSON.parse(localStorage.getItem(this.storageKey)) as Array<any>;
+        if (!!info) {
+          info.forEach(t => {
+            const term = new Term(t);
+            observer.next(term);
+            if (now.isBefore(term.registrationCloses)) {
+              if (candidate === null) {
+                candidate = term;
+              }
+              else if (term.startDate.isBefore(candidate.startDate)) {
+                candidate = term;
+              }
+            }
+          });
+          if (candidate !== null) {
+            this.setCurrent(candidate);
+          }
+        }
       }
-    }
-    return terms;
+      observer.complete();
+    });
   }
 }
