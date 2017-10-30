@@ -55,7 +55,7 @@ export class TermEditComponent implements OnInit {
     else {
       this.termService.updateTerm(this.term);
     }
-    this.router.navigateByUrl('/terms');
+    this.router.navigate(['terms']);
   }
 
   private updateTerm() {

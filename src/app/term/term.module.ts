@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterializeModule } from 'angular2-materialize';
 
 import { TermRoutingModule } from './term-routing.module';
+
 import { TermComponent } from './term.component';
 import { TermListComponent } from './term-list/term-list.component';
 import { TermEditComponent } from './term-edit/term-edit.component';
@@ -25,7 +26,8 @@ import { TermEditComponent } from './term-edit/term-edit.component';
   ],
   exports: [
     TermComponent,
-    TermListComponent
+    TermListComponent,
+    TermEditComponent
   ]
 })
 export class TermModule {}

@@ -6,7 +6,7 @@ import { ChecklistItem, Term, User } from '../models';
 @Component({
   selector: 'app-checklist',
   templateUrl: './checklist.component.html',
-  styleUrls: ['./checklist.component.scss']
+  styles: ['']
 })
 export class ChecklistComponent implements OnInit {
   term: Term;
@@ -16,8 +16,8 @@ export class ChecklistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.termService.current.subscribe(term => {
-      this.term = term;
+    this.termService.currentUpdated.subscribe(changed => {
+      this.term = this.termService.current;
       this.checklist = this.getChecklist();
     });
     this.checklist = this.getChecklist();

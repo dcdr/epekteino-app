@@ -9,17 +9,18 @@ export let TERM_STORE = new InjectionToken('TERM_STORE');
 
 @Injectable()
 export class TermService {
-  private currentObserver: Observer<Term>;
-  private currentSubject: Subject<Term>;
-  current: ConnectableObservable<Term>;
+  private currentObserver: Observer<boolean>;
+  private currentSubject: Subject<boolean>;
+  currentUpdated: ConnectableObservable<boolean>;
+  current: Term;
   
   constructor(@Inject(TERM_STORE) private storageKey: string) {
-    let o = new Observable<Term>(observer => {
+    let o = new Observable<boolean>(observer => {
       this.currentObserver = observer;
     });
-    this.currentSubject = new Subject<Term>();
-    this.current = o.multicast(this.currentSubject);
-    this.current.connect();
+    this.currentSubject = new Subject<boolean>();
+    this.currentUpdated = o.multicast(this.currentSubject);
+    this.currentUpdated.connect();
   }
 
   getAll(): Observable<Term> {
@@ -66,7 +67,8 @@ export class TermService {
   }
 
   setCurrent(term: Term) {
-    this.currentObserver.next(term);
+    this.current = term;
+    this.currentObserver.next(true);
   }
 
   private saveTerms(terms: Term[]) {

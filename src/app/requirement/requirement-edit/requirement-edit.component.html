@@ -1,0 +1,27 @@
+<h4>{{title}}</h4>
+<div class="row">
+  <form materialize [formGroup]="form" novalidate class="col s12">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="name" type="text" formControlName="name" />
+        <label for="name">Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="description" type="text" formControlName="description" D>
+        <label for="description">Description</label>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="input-field col s6">
+        <input id="filter" type="text" formControlName="filter" />
+        <label for="filter">Filter</label>
+      </div>
+    </div> -->
+  </form>
+</div>
+<div>
+  <button (click)="save()" class="ep-btn-submit">Save</button>
+</div>
+  

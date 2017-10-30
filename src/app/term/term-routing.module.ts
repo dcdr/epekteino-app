@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TermComponent } from './term.component';
 import { TermListComponent } from './term-list/term-list.component';
 import { TermEditComponent } from './term-edit/term-edit.component';
 

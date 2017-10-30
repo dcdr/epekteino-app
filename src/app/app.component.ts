@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AuthService } from './services/auth.service';
+import { AuthService, TermService } from './services';
 import { User } from './models/user.model';
 
 @Component({
@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'Epekteino - Class Registration';
   private user: User = null;
   
-  constructor(auth: AuthService) {
+  constructor(auth: AuthService, termService: TermService) {
     this.user = auth.getUser();
   }
 

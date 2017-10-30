@@ -14,8 +14,8 @@ export class TermListComponent implements OnInit {
   current: Term;
 
   constructor(private termService: TermService) {
-    this.termService.current.subscribe(term => { 
-      this.current = term;
+    this.termService.currentUpdated.subscribe(updated => { 
+      this.current = this.termService.current;
     });
   }
 

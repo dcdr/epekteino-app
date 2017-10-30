@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="card-action">
-          <a href="/terms/{{term.id}}">Edit</a>
+          <a routerLink="/terms/{{term.id}}" routerLinkActive="active">Edit</a>
           <a (click)="onDelete(term)">Delete</a>
           <a *ngIf="term.registrationCanOpen()" (click)="openRegistration(term)">Open Registration</a>
           <a *ngIf="term.registrationIsOpen" (click)="closeRegistration(term)">Close Registration</a>

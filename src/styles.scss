@@ -24,3 +24,8 @@ a .brand-logo {
     @extend .btn-large;
     @extend .blue;
 }
+
+.flip-horizontal {
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+}

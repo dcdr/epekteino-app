@@ -7,7 +7,7 @@ import { TermComponent } from './term/term.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '/', pathMatch: 'full' }
+  { path: '**', redirectTo: '/terms', pathMatch: 'full' }
 ];
 
 @NgModule({
