@@ -1,0 +1,44 @@
+<h4>{{title}}</h4>
+<div class="row">
+  <form materialize [formGroup]="form" novalidate class="col s12">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="name" type="text" formControlName="name" />
+        <label for="name">Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <div class="select-wrapper">
+          <select formControlName="subject" materialize="material_select" [materializeSelectOptions]="subjects">
+              <option [value]="" disabled selected>Choose a subject</option>
+            <option *ngFor="let subject of subjects" [value]="subject.value">{{subject.name}}</option>
+          </select>
+        </div>
+        <label for="subject">Subject</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="description" type="text" formControlName="description" D>
+        <label for="description">Description</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="credits" type="number" formControlName="credits" D>
+        <label for="credits">Credits</label>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="input-field col s6">
+        <input id="prerequisites" type="text" formControlName="prerequisites" />
+        <label for="prerequisites">Prerequisites</label>
+      </div>
+    </div> -->
+  </form>
+</div>
+<div>
+  <button (click)="save()" class="ep-btn-submit">Save</button>
+</div>
+  

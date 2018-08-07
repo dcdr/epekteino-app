@@ -1,0 +1,31 @@
+<h3>Students</h3>
+<div>
+  <a routerLink="/students/new" class="btn-floating right btn waves-effect waves-light green"><i class="material-icons">add</i></a>
+  <div class="btn-floating right btn waves-effect waves-light green"><ng4-files-click (filesSelect)="onFilesSelect($event)">
+    <i class="material-icons">publish</i>
+  </ng4-files-click></div>
+  <a (click)="onDownload()" class="btn-floating right btn waves-effect waves-light green"><i class="material-icons flip-horizontal">publish</i></a>
+</div>
+<div *ngFor="let item of list" class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-stacked">
+        <div class="card-content">
+          <span class="card-title">{{item.familyName}}, {{item.givenName}}</span>
+          <div class="row">
+            <div class="col s4">
+              <span>Class: {{item.class}}</span>
+            </div>
+            <div class="col s4">
+                <span>Credits: {{item.credits}}</span>
+              </div>
+            </div>
+        </div>
+        <div class="card-action">
+          <a routerLink="/students/{{item.id}}" routerLinkActive="active">Edit</a>
+          <a (click)="onDelete(item)">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

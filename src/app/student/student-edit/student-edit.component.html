@@ -1,0 +1,50 @@
+<h4>{{title}}</h4>
+<div class="row">
+  <form materialize [formGroup]="form" novalidate class="col s12">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="givenName" type="text" formControlName="givenName">
+        <label for="givenName">Given name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="familyName" type="text" formControlName="familyName">
+        <label for="familyName">Family name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6">
+        <input id="birthdate" type="text" formControlName="birthdate" materialize="pickadate" [materializeParams]="[dateOptions]">
+        <label for="birthdate">Birthdate</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="credits" type="number" formControlName="credits">
+        <label for="credits">Credits</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <div class="select-wrapper">
+          <select formControlName="class" materialize="material_select" [materializeSelectOptions]="classes">
+              <option [value]="" disabled selected>Choose a class</option>
+            <option *ngFor="let class of classes" [value]="class">{{class}}</option>
+          </select>
+        </div>
+        <label for="class">Class</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="transcript" type="text" formControlName="transcript">
+        <label for="transcript">Transcript</label>
+      </div>
+    </div>
+  </form>
+</div>
+<div>
+  <button (click)="save()" class="ep-btn-submit">Save</button>
+</div>
+  
