@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router'
 
 import { NavComponent } from './nav.component';
-import { SettingsComponent } from './settings/settings.component';
 import { AuthService, AUTH_STORE } from '../services/auth.service';
 
 class RouterStub {
@@ -15,7 +14,7 @@ describe('NavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavComponent, SettingsComponent ],
+      declarations: [ NavComponent ],
       providers: [ 
         AuthService,
         { provide: Router, useClass: RouterStub },

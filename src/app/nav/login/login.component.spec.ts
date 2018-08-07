@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NavModule } from '../nav.module';
 import { LoginComponent } from './login.component';
 import { Router } from '@angular/router';
-import { AuthService, AUTH_STORE } from '../services/auth.service';
+import { AuthService, AUTH_STORE } from '../../services/auth.service';
 
 class RouterStub {
   navigateByUrl(url: string) { return url; }
@@ -16,11 +17,14 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
-      providers: [ AuthService, 
-      { provide: Router, useClass: RouterStub },
-      { provide: AUTH_STORE, useValue: 'test-user' }
-    ]
+      imports: [
+        NavModule
+      ],
+      providers: [ 
+        AuthService, 
+        { provide: Router, useClass: RouterStub },
+        { provide: AUTH_STORE, useValue: 'test-user' }
+      ]
     })
     .compileComponents();
   }));

@@ -13,7 +13,7 @@ export class BaseListComponent<Model extends HasId, Service extends BaseService<
 
   onFilesSelect(selection) {
     if (selection.status === Ng4FilesStatus.STATUS_SUCCESS) {
-      this.fileService.upload(selection.files[0]).subscribe(done => {
+      this.fileService.upload(selection.files).subscribe(done => {
         this.loadAll();
       });
     }

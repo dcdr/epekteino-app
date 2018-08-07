@@ -56,8 +56,8 @@ export class StudentEditComponent extends BaseEditComponent<Student, StudentServ
     return {
       format: 'mmmm d, yyyy',
       formatSubmit: 'yyyy-mm-dd',
-      // selectYears: 6,
-      // selectMonths: true
+      selectYears: 16,
+      selectMonths: true
     };
   }
 }
